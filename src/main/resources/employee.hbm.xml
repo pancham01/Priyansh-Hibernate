@@ -3,10 +3,12 @@
 <hibernate-mapping>
 
 
-	<class name="com.hbn.learning.entity.Employee">
+	<class name="com.hbn.learning.entity.Employee" table="empp" >
 
-		<id name="id" />
-		<property name="name" />
+		<id name="id" >
+			<generator class="identity"></generator>		
+		</id>
+		<property name="name" column="empName"/>
 		<property name="gender" />
 		<property name="salary" />
 

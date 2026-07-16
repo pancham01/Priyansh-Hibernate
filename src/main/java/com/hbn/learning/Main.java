@@ -11,12 +11,11 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Employee emp = new Employee(2, "ansh", "male", 99000);
+		Employee emp = new Employee("ansh", "male", 99000);
 
-		Configuration cfg = new Configuration().configure("hibernate.cfgg.xml");// 1
-		SessionFactory sessionFactory = cfg.buildSessionFactory();// 2
-		Session session = sessionFactory.openSession();// 3
-		Transaction transaction = session.beginTransaction();// 4
+		
+		Session session = HibernateConfig.getSessionFactory().openSession();
+		Transaction transaction = session.beginTransaction();
 
 		session.persist(emp);
 		transaction.commit();
