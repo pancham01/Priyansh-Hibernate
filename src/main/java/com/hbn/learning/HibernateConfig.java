@@ -17,7 +17,7 @@ public class HibernateConfig {
 		
 		Properties properties = new Properties();
 		
-		properties.put(Environment.DIALECT,"org.hibernate.dialect.MySQLDialect");
+//		properties.put(Environment.DIALECT,"org.hibernate.dialect.MySQLDialect");
 		properties.put("jakarta.persistence.jdbc.url","jdbc:mysql://localhost:3306/java11");
 		properties.put(Environment.JAKARTA_JDBC_USER,"root");
 		properties.put(Environment.JAKARTA_JDBC_PASSWORD,"root");
