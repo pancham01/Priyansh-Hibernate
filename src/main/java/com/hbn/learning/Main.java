@@ -17,7 +17,6 @@ public class Main {
 		Session session = HibernateConfig.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 
-		session.persist(emp);
 		transaction.commit();
 
 	}
