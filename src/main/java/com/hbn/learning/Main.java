@@ -18,33 +18,18 @@ public class Main {
 		Session session = HibernateConfig.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 
-//		Query query = session.createQuery("from emppp",Employee.class);
-//		List list = query.list();
-//		System.out.println(list);
+		Query<Employee> query = session.createNamedQuery("Employee.findEmployeeById", Employee.class);
+		query.setParameter("id", "5");
+		List<Employee> employees = query.getResultList();
+		System.out.println(employees);
 
-//		Query query = session.createQuery("from emppp",Employee.class);
-//		query.setFirstResult(2);
-//		query.setMaxResults(4);
-//		List list = query.list();
-//		System.out.println(list);
+		System.out.println();
 
-//		MutationQuery query = session.createMutationQuery("update emppp set name =:n , salary =:s where id =:i");
-//		query.setParameter("n", "Vinod");
-//		query.setParameter("s", 454353);
-//		query.setParameter("i", 4);
-//		query.executeUpdate();
-//		transaction.commit();
-		
-		
-//		MutationQuery query = session.createMutationQuery("delete from emppp where id =:i");
-//		query.setParameter("i", 7);
-//		query.executeUpdate();
-//		transaction.commit();
-
-
-		Query query1 = session.createQuery("SELECT max(name) from emppp");
-		System.out.println(query1.list());
-
+		Query<Employee> q = session.createNamedQuery("Employee.findByGender", Employee.class);
+		q.setParameter("gender", "male");
+		System.out.println(q.list());
+//		tx.commit();
+		session.close();
 	}
 
 }

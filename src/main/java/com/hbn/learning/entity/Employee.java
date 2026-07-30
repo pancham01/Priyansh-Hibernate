@@ -4,8 +4,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 
-@Entity(name =  "emppp")
+
+
+
+
+@NamedQuery(
+	name = "Employee.findEmployeeById", 
+	query = "FROM emppp E WHERE E.id > :id"
+	)
+@NamedQuery(
+    name = "Employee.findByGender",
+    query = "SELECT e FROM emppp e WHERE e.gender = :gender"
+)
+
+
+
+
+
+@Entity(name = "emppp")
 public class Employee {
 
 	@Id
