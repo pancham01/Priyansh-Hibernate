@@ -4,26 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 
 
 
-
-
-@NamedQuery(
-	name = "Employee.findEmployeeById", 
-	query = "FROM emppp E WHERE E.id > :id"
-	)
-@NamedQuery(
-    name = "Employee.findByGender",
-    query = "SELECT e FROM emppp e WHERE e.gender = :gender"
-)
-
-
-
-
-
-@Entity(name = "emppp")
+@Entity
 public class Employee {
 
 	@Id
@@ -31,6 +16,9 @@ public class Employee {
 	private int id;
 	private String name, gender;
 	private int salary;
+	
+	@OneToOne
+	private Address address;
 
 	public Employee() {
 	}
@@ -39,6 +27,16 @@ public class Employee {
 		this.name = name;
 		this.gender = gender;
 		this.salary = salary;
+	}
+
+	
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public int getId() {
@@ -75,7 +73,9 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + "]";
+		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + ", address="
+				+ address + "]";
 	}
+
 
 }

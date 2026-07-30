@@ -1,35 +1,36 @@
 package com.hbn.learning;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.MutationQuery;
-import org.hibernate.query.Query;
 
+import com.hbn.learning.entity.Address;
 import com.hbn.learning.entity.Employee;
 
 public class Main {
 
 	public static void main(String[] args) {
+		Address add1 = new Address("Noida", "UP", 201301);
 
-		Employee emp = new Employee("Avinash Jain", "male", 99000);
+
+		Employee emp = new Employee();
+		emp.setName("Anoop");
+		emp.setGender("male");
+		emp.setSalary(77700);
+		emp.setAddress(add1);
+
 
 		Session session = HibernateConfig.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 
-		Query<Employee> query = session.createNamedQuery("Employee.findEmployeeById", Employee.class);
-		query.setParameter("id", "5");
-		List<Employee> employees = query.getResultList();
-		System.out.println(employees);
+//		session.persist(emp);
+//		session.persist(add1);
+//		transaction.commit();
+		
+		
+		
+		Employee employee = session.find(Employee.class, 1);
+		System.out.println(employee);
 
-		System.out.println();
-
-		Query<Employee> q = session.createNamedQuery("Employee.findByGender", Employee.class);
-		q.setParameter("gender", "male");
-		System.out.println(q.list());
-//		tx.commit();
-		session.close();
 	}
 
 }
