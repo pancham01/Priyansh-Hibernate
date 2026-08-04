@@ -1,13 +1,13 @@
 package com.hbn.learning.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-
-
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Employee {
@@ -17,10 +17,9 @@ public class Employee {
 	private int id;
 	private String name, gender;
 	private int salary;
-	
-	@OneToOne
-	@JoinColumn(name = "add_id")
-	private Address address;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Address> address;
 
 	public Employee() {
 	}
@@ -31,13 +30,11 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	
-	
-	public Address getAddress() {
+	public List<Address> getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
 
@@ -78,6 +75,5 @@ public class Employee {
 		return "Employee [id=" + id + ", name=" + name + ", gender=" + gender + ", salary=" + salary + ", address="
 				+ address + "]";
 	}
-
 
 }
