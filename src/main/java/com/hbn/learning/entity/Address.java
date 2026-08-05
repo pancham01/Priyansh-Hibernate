@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Address {
@@ -13,6 +14,9 @@ public class Address {
 	private int id;
 	private String city, state;
 	private int pinCode;
+	
+	@ManyToOne
+	private Employee employee;
 
 	public Address() {
 	}
@@ -21,6 +25,17 @@ public class Address {
 		this.city = city;
 		this.state = state;
 		this.pinCode = pinCode;
+	}
+	
+	
+	
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public int getId() {
